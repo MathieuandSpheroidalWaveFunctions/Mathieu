@@ -1,11 +1,10 @@
   			Mathieu
 
-  Matfcn is available as both a subroutine version and a stand alone
-  version. It was originally developed by arnie lee van buren and
-  jeffrey boisvert and has been improved several times since then.
-  The version initially placed in the GitHub repository is 1.07,
-  January 2021.
-
+  Matfcn is available as both a subroutine version provided as
+  the module Mathieu and a stand alone version. It was originally
+  developed by arnie lee van buren and jeffrey boisvert and has
+  been improved several times since then.
+  
 	Table of Contents
   1. Purpose
   2. Introduction
@@ -60,14 +59,14 @@
   in the two equations in (10) is in error and should be r times
   theta.]
 
-  Matfcn is written in fortran 95. It is designed around the maximum
-  number of decimal digits ndec and the maximum exponent nex available
-  in real arithmetic. Procedures used in matfcn allow for exponents much
-  larger than nex since the resulting floating point radial function
-  values are given as a characteristic and an integer exponent. Testing
-  of matfcn shows that in real*8 arithmetic,it provides good results
-  for q positive for virtually all values of xi and for c up to at
-  least 10000. It also provides good results for q negative for
+  Matfcn is written in free format fortran. It is designed around the
+  maximum number of decimal digits ndec and the maximum exponent nex
+  available in real arithmetic. Procedures used in matfcn allow for
+  exponents much larger than nex since the resulting floating point
+  radial function values are given as a characteristic and an integer
+  exponent. Testing of matfcn shows that in real*8 arithmetic,it provides
+  good results for q positive for virtually all values of xi and for c
+  up to at least 10000. It also provides good results for q negative for
   virtually all values of xi down to 1.000005 and for c up to at
   least 10000i. See the discussion of accuracy below.
 
@@ -109,9 +108,7 @@
   description of the the input and output files associated with the
   stand alone version. Note that these output files, if desired, can be
   obtained when running the subroutine version. See comments about
-  this below. Following the discussion of input and output will be
-  discussions about the expected accuracy for both real*8 and real*16
-  arithmetic, the expansion A and B coefficients and the eigenvalues.
+  this below.
   
   A sample input and resulting output from matfcn is provided by the
   files matfcndat (text version of the input file matfcn.dat for the
@@ -362,13 +359,14 @@
                    enter the value 1 for narg if iopang = 0
 
 
-         OUtput files
+         Output files
 
    These output files are also available using the subroutine version
-   of matfcn. Just search for the write statements corresponding to
-   the desired file, e.g., write(20, and the associated format
-   statements and remove the comment designations (c in the first
-   column)
+   of matfcn. Generation of each of the files is controlled by a logical
+   specified in the module param located before the program. False
+   suppresses the output file and true enables it. The logical debug
+   controls fort.30 and fort.40, the logical output controls fort.20
+   and fort.30 and warn controls fort.60.
 
    fort.20
 
@@ -510,12 +508,7 @@
      the specific techniques used and the numbers of terms required
      for the radial function and angular function calculations,
      respecively. They are annotated and should be self-explanatory.
-     If fort.40 is not desired, then search for (40, in the program
-     and comment out the lines of code found by placing a c in column
-     one. Similary if fort.50 or fort.60 is not desired search for
-     (50, or (60 and comment out the lines of code found. The
-     associated open and format statements can also be commented out.
-
+     
    fort.60
 
      This file may be of interest to the user. It is recommended that
