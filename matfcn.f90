@@ -1,13 +1,14 @@
-      module param
+
+    module param
       integer, parameter :: knd = selected_real_kind(8)
       logical, parameter :: debug = .true.
       logical, parameter :: warn = .true.
       logical, parameter :: output = .true.
-      end module param
+    end module param
 !
        program matfcn
        use param
-!       
+!
 !      version 1.08 March 2021
 !
 !  Developed originally in about 2005 by arnie lee van buren and jeffrey
@@ -171,18 +172,18 @@
 !
 !  open input file
         open(1,file='matfcn.dat')
-!  open output files        
-   if (output) then     
+!  open output files
+   if (output) then
         open(20,file='fort.20')
         open(30,file='fort.30')
    end if
-   if (debug) then     
+   if (debug) then
         open(40,file='fort.40')
         open(50,file='fort.50')
-   end if  
-   if (warn) then     
+   end if
+   if (warn) then
         open(60,file='fort.60')
-   end if     
+   end if
 !
 !  read input data
         read(1,*) lnum,ioprad,iopang,izxi,icq,isq
@@ -405,7 +406,7 @@ if (output) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(20,10) z
             if(ioprad.ne.0.and.knd.eq.kindq) write(20,15) z
 end if
-if (debug) then            
+if (debug) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(40,10) z
             if(ioprad.ne.0.and.knd.eq.kindq) write(40,15) z
 end if
@@ -417,7 +418,7 @@ if (output) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(20,20) xi
             if(ioprad.ne.0.and.knd.eq.kindq) write(20,25) xi
 end if
-if (debug) then                        
+if (debug) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(40,20) xi
             if(ioprad.ne.0.and.knd.eq.kindq) write(40,25) xi
 end if
@@ -431,7 +432,7 @@ if (output) then
             if(iopang.ne.0.and.knd.eq.kindd) write(30,30) q
             if(iopang.ne.0.and.knd.eq.kindq) write(30,35) q
 end if
-if (debug) then            
+if (debug) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(40,30) q
             if(iopang.ne.0.and.knd.eq.kindd) write(50,30) q
             if(ioprad.ne.0.and.knd.eq.kindq) write(40,35) q
@@ -447,7 +448,7 @@ if (output) then
             if(ioprad.ne.0.and.isq.eq.1.and.knd.eq.kindq) write(20,45) cm
             if(ioprad.ne.0.and.isq.eq.-1.and.knd.eq.kindq) write(20,55) cm
 end if
-if (debug) then            
+if (debug) then
             if(ioprad.ne.0.and.isq.eq.1.and.knd.eq.kindd) write(40,40) cm
             if(ioprad.ne.0.and.isq.eq.-1.and.knd.eq.kindd) write(40,50) cm
             if(ioprad.ne.0.and.isq.eq.1.and.knd.eq.kindq) write(40,45) cm
@@ -463,7 +464,7 @@ if (output) then
             if(iopang.ne.0.and.isq.eq.1.and.knd.eq.kindq) write(30,45) cm
             if(iopang.ne.0.and.isq.eq.-1.and.knd.eq.kindq) write(30,55) cm
 end if
-if (debug) then            
+if (debug) then
             if(iopang.ne.0.and.isq.eq.1.and.knd.eq.kindd) write(50,40) cm
             if(iopang.ne.0.and.isq.eq.-1.and.knd.eq.kindd) write(50,50) cm
             if(iopang.ne.0.and.isq.eq.1.and.knd.eq.kindq) write(50,45) cm
@@ -961,7 +962,7 @@ end if
               go to 400
               end if
               if(knd.eq.kindq) then
-if (debug) then	      
+if (debug) then
               write(40,335) naccrc,mc2c,imc2e,mc2dc,imc2de
 335           format(15x,'Wronskian accuracy =',i3, &
                      ' decimal digits.'/,10x,'mc2 = ', f33.30,i6, &
