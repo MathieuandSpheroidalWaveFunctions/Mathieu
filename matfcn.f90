@@ -1211,7 +1211,7 @@ end if
 700         continue
 710       continue
         return
-        end
+        end subroutine
 !
 !
         subroutine cese (cm,isq,l,lims1,ndec,iopang,maxd,maxp,enra, &
@@ -1634,7 +1634,7 @@ end if
         asubl=bsubl
         bsubl=asubls
 600     return
-        end
+        end subroutine
 !
 !
         subroutine m1bes (iopcs,l,cm,x1,isq,limr1,ndec,maxd,enra, &
@@ -3131,7 +3131,7 @@ end if
         im2de=im2de-1
 210     continue
         return
-        end
+        end subroutine
 !
 !
         subroutine m3bpe (iopcs,l,cm,x1,limbpe,ndec,maxd,enra,enrb, &
@@ -3427,7 +3427,7 @@ end if
         if(iopt.eq.20) m3c=-m3c
         if(iopt.eq.20) m3dc=-m3dc
         return
-        end
+        end subroutine
 !
 !
         subroutine m3neu (iopcs,l,cm,x1,limneu,ndec,minacc,maxd, &
@@ -3656,7 +3656,7 @@ end if
 170     continue
         if(jneu.eq.lim) jneu=lim+20
         return
-        end
+        end subroutine
 !
 !
          subroutine geteiga (l,cm,eiga1,eiga2,eiga3,eiga4,eiga5,eigaval)
@@ -3749,7 +3749,7 @@ end if
         eiga3=eiga4
         eiga4=eiga5
         return
-        end
+        end subroutine
 !
 !
         subroutine convera (l,cm,limd,eiga1,eiga3,eiga4,eiga5,ndec,maxd, &
@@ -3981,7 +3981,7 @@ end if
                1x,'this value may be inaccurate')
         eiga5=eigaval
         return
-        end
+        end subroutine
 !
 !
         subroutine dnorma (l,limd,maxd,ndec,enra,ce0, &
@@ -4110,7 +4110,7 @@ end if
 160     if(ix2.eq.1) cedpio2=-cedpio2
 180     continue
         return
-        end
+        end subroutine
 !
 !
         subroutine geteigb (l,cm,eigb1,eigb2,eigb3,eigb4,eigb5,eigbval)
@@ -4206,7 +4206,7 @@ end if
         eigb3=eigb4
         eigb4=eigb5
         return
-        end
+        end subroutine
 !
 !
         subroutine converb (l,cm,limd,eigb1,eigb3,eigb4,eigb5,ndec,maxd, &
@@ -4436,7 +4436,7 @@ end if
                1x,'this value may be inaccurate')
         eigb5=eigbval
         return
-        end
+        end subroutine
 !
 !
         subroutine dnormb (l,limd,maxd,ndec,enrb,sed0,sepio2, &
@@ -4565,7 +4565,7 @@ end if
 160     if(ix2.eq.1) sedpio2=-sedpio2
 180     continue
         return
-        end
+        end subroutine
 !
 !
         subroutine sincos(limsc,maxp,narg,isq,barg,sine,cosi)
@@ -4591,7 +4591,7 @@ end if
 30          continue
 40        continue
         return
-        end
+        end subroutine
 !
         subroutine cbesj (cm,x,limj,maxj,numlp,maxlp,limjt,ndec,limbes, &
                           cbesf,cbesn,ibese,cbesdf,cbesdr,iopr)
@@ -4726,7 +4726,7 @@ end if
 80        cbesdf(n)=cbesdf(n-1)*cbesdf(n)
 90      continue
         return
-        end
+        end subroutine
 !
 !
         subroutine cbesi (cm,x,limj,maxj,numlp,maxlp,limjt,ndec,limbes, &
@@ -4882,7 +4882,7 @@ end if
 90        continue
 100     continue
         return
-        end
+        end subroutine
 !
 !
         subroutine cneuy (cm,x,limn,maxn,numlp,maxlp,ndec,limbes,pi, &
@@ -5017,7 +5017,7 @@ end if
 90        continue
 100     continue
         return
-        end
+        end subroutine
 !
 !
         subroutine cneuk (cm,x,limn,maxn,numlp,maxlp,ndec,nex,limbes,pi, &
@@ -5215,7 +5215,7 @@ end if
 180       continue
 190     continue
         return
-        end
+        end subroutine
 !
 !
 	subroutine gauss (n,ndec,x,w)
@@ -5264,7 +5264,7 @@ end if
 	  w(n+1-i)=w(i)
 40	  continue
 	return
-	end
+	end subroutine
 !
 !
         subroutine k0int (cx,ndec,ngau,wr,xr,ck0)
@@ -5302,4 +5302,4 @@ end if
 10        continue
         ck0=coef*ck0
         return
-        end
+        end subroutine
