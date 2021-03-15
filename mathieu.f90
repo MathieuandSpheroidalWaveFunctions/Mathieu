@@ -7,11 +7,11 @@ end module param
 !
 module mathieu
     use param
-    
+
     public :: matfcn
 
-    contains 
-    
+    contains
+
         subroutine matfcn(lnum, ioprad, izxi, icq, isq, qc, r, iopang, narg, arg, &
                             mc1c, mc1e, mc1dc, mc1de, mc23c, mc23e, mc23dc, mc23de, &
                             ms1c, ms1e, ms1dc, ms1de, ms23c, ms23e, ms23dc, ms23de, &
@@ -277,7 +277,7 @@ module mathieu
           if(izxi.eq.2) then
           x1=r
           z=0.0e0_knd
-          end if 
+          end if
 !
 !  set array dimensions
         maxj=1
@@ -323,9 +323,9 @@ module mathieu
 		   mc1c,mc1e,mc1dc,mc1de,mc23c,mc23e,mc23dc,mc23de, &
 		   ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e,ms23dc,ms23de, &
 		   ce,ced,se,sed)
-        end subroutine 
+        end subroutine
 !
-   
+
         subroutine mathieuf(lnum,cm,q,icq,isq,ioprad,iopang,minacc,izxi,x1, &
                             z,narg,arg,maxd,maxj,maxlp,maxn,maxp,maxkbp, &
                             maxk,ndec,nex,ngau,kindd,kindq, &
@@ -365,10 +365,10 @@ module mathieu
 !                      : = 2 if the input radial coordinate is the
 !                       spheroidal-like radial coordinate xi = cosh(z)
 !               x1     : radial coordinate xi - 1 = cosh(z) - 1
-!               z      : traditional radial coordinate 
+!               z      : traditional radial coordinate
 !               arg    : vector of narg angle coordinates in degrees
 !                        for which angular functions are desired
-!               narg   : number of desired angle arguments.                       
+!               narg   : number of desired angle arguments.
 !               maxd   : dimension of the vectors enra and enrb that
 !                        contain ratios of the a and b expansion
 !                        coefficients
@@ -384,19 +384,19 @@ module mathieu
 !                        functions of the second kind and of the array
 !                        of ratios of the first derivatives of these
 !                        functions. The ratios are of consecutive
-!                        functions of the same parity.                 
+!                        functions of the same parity.
 !               maxp   : number of sine and cosine function values
 !                        computed for each desired angle coordinate
 !               maxk   : dimension of the array of ratios of modified
 !                        Bessel functions of the third kind and of the
 !                        array of ratios of the first derivatives of
 !                        these functions. The ratios are of consecutive
-!                        functions of the same parity. 
+!                        functions of the same parity.
 !               maxkbp : dimension of the array of ratios of modified
 !                        Bessel functions of the third kind and of the
 !                        array of ratios of the first derivatives of
 !                        these functions. The ratios are of consecutive
-!                        functions of the same parity.                                               
+!                        functions of the same parity.
 !               ndec   : number of decimal digits for real(knd)
 !               nex    : maximum exponent for real(knd)
 !               ngau   : order of the Gaussian quadrature to be used in
@@ -409,14 +409,14 @@ module mathieu
 !     Output:   amc1c  : vector containing the lnum characteristics for
 !                        the cosine radial functions of the first kind
 !                        Mc1. The factor i is suppressed for all of the
-!                        radial and angular functions that are maginary. 
+!                        radial and angular functions that are maginary.
 !               mc1e   : integer vector of exponents corresponding to
 !                        amc1c
 !               amc1dc : vector containing the lnum characteristics for
 !                        the first derivatives with respect to z of the
 !                        cosine radial functions of the first kind
 !               mc1de  : integer vector of exponents corresponding to
-!                        amc1dc                       
+!                        amc1dc
 !               amc23c : When q is positive, these are vectors of lnum
 !                        characteristics for the cosine radial functions
 !                        of the second kind Mc2.
@@ -444,7 +444,7 @@ module mathieu
 !                        the first derivatives with respect to z of the
 !                        sine radial functions of the first kind
 !               ms1de  : integer vector of exponents corresponding to
-!                        ams1dc                       
+!                        ams1dc
 !               ams23c : When q is positive, these are vectors of lnum
 !                        characteristics for the sine radial functions
 !                        of the second kind Ms2.
@@ -496,7 +496,7 @@ module mathieu
 !
 !  real(knd) arrays with dimensions lnum and narg
         real(knd) ace(lnum,narg),aced(lnum,narg),ase(lnum,narg), ased(lnum,narg)
-!  
+!
 !  real(knd) vectors with dimension maxd
         real(knd) enra(maxd),blista(maxd),glista(maxd),enrb(maxd), &
                   blistb(maxd),glistb(maxd)
@@ -554,7 +554,7 @@ if (output) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(20,10) z
             if(ioprad.ne.0.and.knd.eq.kindq) write(20,15) z
 end if
-if (debug) then            
+if (debug) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(40,10) z
             if(ioprad.ne.0.and.knd.eq.kindq) write(40,15) z
 end if
@@ -566,7 +566,7 @@ if (output) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(20,20) xi
             if(ioprad.ne.0.and.knd.eq.kindq) write(20,25) xi
 end if
-if (debug) then                        
+if (debug) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(40,20) xi
             if(ioprad.ne.0.and.knd.eq.kindq) write(40,25) xi
 end if
@@ -580,7 +580,7 @@ if (output) then
             if(iopang.ne.0.and.knd.eq.kindd) write(30,30) q
             if(iopang.ne.0.and.knd.eq.kindq) write(30,35) q
 end if
-if (debug) then            
+if (debug) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(40,30) q
             if(iopang.ne.0.and.knd.eq.kindd) write(50,30) q
             if(ioprad.ne.0.and.knd.eq.kindq) write(40,35) q
@@ -596,7 +596,7 @@ if (output) then
             if(ioprad.ne.0.and.isq.eq.1.and.knd.eq.kindq) write(20,45) cm
             if(ioprad.ne.0.and.isq.eq.-1.and.knd.eq.kindq) write(20,55) cm
 end if
-if (debug) then            
+if (debug) then
             if(ioprad.ne.0.and.isq.eq.1.and.knd.eq.kindd) write(40,40) cm
             if(ioprad.ne.0.and.isq.eq.-1.and.knd.eq.kindd) write(40,50) cm
             if(ioprad.ne.0.and.isq.eq.1.and.knd.eq.kindq) write(40,45) cm
@@ -612,7 +612,7 @@ if (output) then
             if(iopang.ne.0.and.isq.eq.1.and.knd.eq.kindq) write(30,45) cm
             if(iopang.ne.0.and.isq.eq.-1.and.knd.eq.kindq) write(30,55) cm
 end if
-if (debug) then            
+if (debug) then
             if(iopang.ne.0.and.isq.eq.1.and.knd.eq.kindd) write(50,40) cm
             if(iopang.ne.0.and.isq.eq.-1.and.knd.eq.kindd) write(50,50) cm
             if(iopang.ne.0.and.isq.eq.1.and.knd.eq.kindq) write(50,45) cm
@@ -1110,7 +1110,7 @@ end if
               go to 400
               end if
               if(knd.eq.kindq) then
-if (debug) then	      
+if (debug) then
               write(40,335) naccrc,mc2c,imc2e,mc2dc,imc2de
 335           format(15x,'Wronskian accuracy =',i3, &
                      ' decimal digits.'/,10x,'mc2 = ', f33.30,i6, &
