@@ -1982,7 +1982,7 @@ end if
         if(mfac.gt.(ndec+5)) iflag=1
         if(mfac.le.(ndec+5)) iflag=0
         return
-        end
+        end subroutine
 !
 !
         subroutine m1bpe (iopcs,iss,ismax,l,cm,x1,limbpe,ndec,limd,maxd, &
@@ -2391,7 +2391,7 @@ end if
         if(ix.eq.1) m1dc=-m1dc
         if(2*(is/2).ne.is) m1dc=-m1dc
         return
-        end
+        end subroutine
 !
 !
         subroutine m1bpe0 (iopcs,iss,ismax,l,cm,limbpe,ndec,limd, &
@@ -2703,7 +2703,7 @@ end if
         iss=iss+issinc
 210     continue
         return
-        end
+        end subroutine
 !
 !
         subroutine m2bpe (iopcs,iss,l,c,x1,limbpe,ndec,maxd,enra, &
