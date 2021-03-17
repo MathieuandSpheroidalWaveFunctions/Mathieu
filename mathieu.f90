@@ -2,9 +2,9 @@ module param
     integer, parameter :: knd = selected_real_kind(8)
     logical, parameter :: debug = .true.
     logical, parameter :: warn = .true.
-    logical, parameter :: output = .true.
+    logical, parameter :: output = .false.
 end module param
-!
+
 module mathieu
     use param
 
@@ -12,11 +12,11 @@ module mathieu
 
     contains
 
-        subroutine matfcn(lnum, ioprad, izxi, icq, isq, qc, r, iopang, narg, arg, &
-                            mc1c, mc1e, mc1dc, mc1de, mc23c, mc23e, mc23dc, mc23de, &
-                            ms1c, ms1e, ms1dc, ms1de, ms23c, ms23e, ms23dc, ms23de, &
-                            ce, ced, se, sed)
-
+    subroutine matfcn(lnum, ioprad, izxi, icq, isq, qc, r, iopang, narg, arg, &
+                            mc1c, mc1e, mc1dc, mc1de, mc23c, mc23e, mc23dc, mc23de, naccrc, &
+                            ms1c, ms1e, ms1dc, ms1de, ms23c, ms23e, ms23dc, ms23de, naccrs, &
+                            ce, ced, se, sed, nacca)
+!
 !      version 1.08 March 2021
 !
 !  Subroutine version of the fortran program matfcn originally developed
@@ -132,7 +132,7 @@ module mathieu
 !                   When q is positive, the functions are real.
 !                   When q is negative and the order is odd, the
 !                   functions are imaginary. The real values given
-!                   in the vectors dmc1 and dmc1d must be multiplied
+!                   in the vectors mc1 and mc1d must be multiplied
 !                   by i to obtain the characteristics for odd orders.
 !
 !          mc1e   : integer vectors of length lnum containing the
@@ -148,11 +148,14 @@ module mathieu
 !                   with respect to z. Mc3 and its first derivative is
 !                   real when l is odd and imaginary when l is even.
 !                   In this case, the real values given in the vectors
-!                   dmc23 and dmc23d must be multiplied by i to obtain
+!                   mc23 and mc23d must be multiplied by i to obtain
 !                   the characteristics for even orders.
 !
 !          mc23e :  integer vectors of length lnum containing the
-!          mc23de   exponents corresponding to dmc23 and dmc23d
+!          mc23de   exponents corresponding to mc23 and mc23d
+!
+!          naccrc : vector of lnum values for the estimated accuracy of the
+!                   cosine radial functions; obtained using the Wronskian
 !
 !          ms1c   : real(knd) vectors of length lnum containing the
 !          ms1dc    characteristics for the sine radial functions
@@ -161,7 +164,7 @@ module mathieu
 !                   When q is positive, the functions are real.
 !                   When q is negative and the order is odd, the
 !                   functions are imaginary. The real values given in
-!                   the vectors dms1 and dms1d must be multiplied by i
+!                   the vectors ms1 and ms1d must be multiplied by i
 !                   to obtain the characteristics for odd orders.
 !
 !          ms1e   : integer vectors of length lnum containing the
@@ -177,26 +180,36 @@ module mathieu
 !                   with respect to z. Ms3 and its first derivative is
 !                   real when l is odd and imaginary when l is even.
 !                   In this case, the real values given in the vectors
-!                   dms23 and dms23d must be multiplied by i to obtain
+!                   ms23 and ms23d must be multiplied by i to obtain
 !                   the characteristics for even orders.
 !
-!          mc23e  : integer vectors of length lnum containing the
-!          mc23de   exponents corresponding to dms23 and dms23d
+!          ms23e  : integer vectors of length lnum containing the
+!          ms23de   exponents corresponding to ms23 and ms23d
 !
-!          ce,ced : vectors ce(lnum,narg) and ced(lnum,narg) that
+!          naccrs : vector of lnum values for the estimated accuracy of the
+!                   sine radial functions; obtained using the Wronskian
+!
+!          ce,ced : arrays ce(lnum,narg) and ced(lnum,narg) that
 !                   contain narg calculated angular cosine functions
 !                   and their first derivatives for each of the lnum
 !                   values of l [real(knd)]
 !                   For example, ce(10,1) is the angular function for
 !                   l = 9 and the first value of the angle phi given
 !                   by arg(1)
-!          se,sed : vectors se(lnum,narg) and sed(lnum,narg) that
+!
+!          se,sed : arrays se(lnum,narg) and sed(lnum,narg) that
 !                   contain narg calculated angular sine functions
 !                   and their first derivatives for each of the lnum
 !                   values of l [real(knd))
 !                   For example, se(10,1) is the angular function for
 !                   l = 9 and the first value of the angle phi given
 !                   by arg(1)
+!
+!          nacca  : array of lnum values of the estimated accuracy of the angular
+!                   functions for each of the narg angles; equal to the minimum
+!                   of the estimates for the sine and cosine angular functions
+!                   and their first derivatives; based on subtraction errors
+!                   in their calculation
 !
 !  We use the term radial function for what is normally referred to as
 !  a modified Mathieu function. First derivative values for the radial
@@ -213,15 +226,16 @@ module mathieu
 !  as a discussion about accuracy, expansion A and B coefficients and
 !  eigenvalues is given in the readme file.
 !
-!  real(knd) scalars
-!
-        real(knd) qc,q,cm,r,z,x1
-        real(knd) mc1c(lnum),mc1dc(lnum),mc23c(lnum),mc23dc(lnum), &
-                  ms1c(lnum),ms1dc(lnum),ms23c(lnum),ms23dc(lnum), &
-                  ce(lnum,narg),ced(lnum,narg),se(lnum,narg), &
-                  sed(lnum,narg),arg(narg)
-        integer   mc1e(lnum),mc1de(lnum),mc23e(lnum),mc23de(lnum), &
-                  ms1e(lnum),ms1de(lnum),ms23e(lnum),ms23de(lnum)
+    integer, intent (in)    ::  ioprad, izxi, icq, isq, iopang, narg
+    real(knd), intent (in)  ::  qc, r, arg(narg)
+    integer, intent (out)   ::  mc1e(lnum),mc1de(lnum),mc23e(lnum),mc23de(lnum), &
+                                ms1e(lnum),ms1de(lnum),ms23e(lnum),ms23de(lnum), &
+                                naccrc(lnum), naccrs(lnum), naccra(lnum, narg)
+    real(knd), intent (out) ::  mc1c(lnum), mc1dc(lnum), mc23c(lnum), mc23dc(lnum), &
+                                ms1c(lnum), ms1dc(lnum), ms23c(lnum), ms23dc(lnum), &
+                                ce(lnum, narg), ced(lnum, narg), &
+                                se(lnum, narg), sed(lnum, narg)
+    real(knd) q, cm, z, x1
 !
 !  ndec: the maximum number of decimal digits available in real(knd)
 !           arithmetic.
@@ -320,18 +334,18 @@ module mathieu
         call mathieuf(lnum,cm,q,icq,isq,ioprad,iopang,minacc,izxi,x1,z, &
                    narg,arg,maxd,maxj,maxlp,maxn,maxp,maxkbp,maxk, &
                    ndec,nex,ngau,kindd,kindq, &
-		   mc1c,mc1e,mc1dc,mc1de,mc23c,mc23e,mc23dc,mc23de, &
+		   mc1c,mc1e,mc1dc,mc1de,mc23c,mc23e,mc23dc,mc23de,naccrc, &
 		   ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e,ms23dc,ms23de, &
-		   ce,ced,se,sed)
+		   naccrs,ce,ced,se,sed,nacca)
         end subroutine
 !
 
         subroutine mathieuf(lnum,cm,q,icq,isq,ioprad,iopang,minacc,izxi,x1, &
                             z,narg,arg,maxd,maxj,maxlp,maxn,maxp,maxkbp, &
                             maxk,ndec,nex,ngau,kindd,kindq, &
-			    amc1c,mc1e,amc1dc,mc1de,amc23c,mc23e,amc23dc,mc23de, &
+			    amc1c,mc1e,amc1dc,mc1de,amc23c,mc23e,amc23dc,mc23de,narc, &
 			    ams1c,ms1e,ams1dc,ms1de,ams23c,ms23e,ams23dc,ms23de, &
-                            ace,aced,ase,ased)
+                            nars,ace,aced,ase,ased,naa)
 !
 !  purpose:    to coordinate the calculation of Mathieu functions,
 !              including the radial and angular functions and their
@@ -435,6 +449,8 @@ module mathieu
 !                        of the third kind
 !               mc23de : integer vector of exponents corresponding to
 !                        amc23dc
+!               narc   : vector of lnum values for the estimated accuracy
+!                        of the cosine radial functions
 !               ams1c  : vector containing the lnum characteristics for
 !                        the sine radial functions of the first kind
 !                        Ms1
@@ -463,6 +479,8 @@ module mathieu
 !                        of the third kind
 !               ms23de : integer vector of exponents corresponding to
 !                        ams23dc
+!               nars   : vector of lnum values for the estimated accuracy
+!                        of the sine radial functions
 !               ace    : array of lnum values of the cosine angular
 !                        functions for each of the narg angles
 !               aced   : array of lnum values of the first derivatives
@@ -473,6 +491,8 @@ module mathieu
 !               ased   : array of lnum values of the first derivatives
 !                        of the sine angular functions for each of
 !                        the narg angles
+!               naa    : array of lnum values of the estimated accuracy of the
+!                        angular functions for each of the narg angles
 !
         use param
 !
@@ -492,10 +512,14 @@ module mathieu
 !
 !  integer vectors with dimension lnum
         integer   mc1e(lnum),mc1de(lnum),mc23e(lnum),mc23de(lnum), &
-                  ms1e(lnum),ms1de(lnum),ms23e(lnum),ms23de(lnum)
+                  ms1e(lnum),ms1de(lnum),ms23e(lnum),ms23de(lnum), &
+                  narc(lnum),nars(lnum)
 !
 !  real(knd) arrays with dimensions lnum and narg
-        real(knd) ace(lnum,narg),aced(lnum,narg),ase(lnum,narg), ased(lnum,narg)
+        real(knd) ace(lnum,narg),aced(lnum,narg),ase(lnum,narg),ased(lnum,narg)
+!
+!  integer arrays with dimensions lnum and narg
+        integer   naa(lnum,narg)            
 !
 !  real(knd) vectors with dimension maxd
         real(knd) enra(maxd),blista(maxd),glista(maxd),enrb(maxd), &
@@ -1312,9 +1336,10 @@ if (warn) then
               end if
 end if
               amc1c(li)=mc1c
-            amc1dc(li)=mc1dc
-            mc1e(li)=imc1e
-            mc1de(li)=imc1de
+              amc1dc(li)=mc1dc
+              mc1e(li)=imc1e
+              mc1de(li)=imc1de
+              narc(li)=naccrc
               if(isq.eq.1) then
               amc23c(li)=mc2c
               amc23dc(li)=mc2dc
@@ -1326,11 +1351,13 @@ end if
               mc23e(li)=imc3e
               mc23de(li)=imc3de
               end if
-                if(l.ne.0) then
+              if(l.eq.0) nars(1)=ndec
+              if(l.ne.0) then
                 ams1c(li)=ms1c
                 ams1dc(li)=ms1dc
                 ms1e(li)=ims1e
                 ms1de(li)=ims1de
+                nars(li)=naccrs
                 if(isq.eq.1) then
                 ams23c(li)=ms2c
                 ams23dc(li)=ms2dc
@@ -1373,6 +1400,7 @@ end if
                 ase(li,jarg)=se(jarg)
                 ased(li,jarg)=sed(jarg)
                 end if
+              naa(li,jarg)=nacca(jarg)
 620           format(1x,f20.14,5x,e24.15,2x,e24.15,2x,i2)
 630           format(1x,f20.14,5x,e24.15,2x,e24.15,2x,/,26x, &
                     e24.15,2x,e24.15,2x,i2)
