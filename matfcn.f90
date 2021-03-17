@@ -1255,10 +1255,10 @@ end if
 !                        the desired angles
 !               sed    : corresponding vector for first derivatives
 !                        of the sine angular functions
-!               naccs  : vector of dimension narg containing estimates
-!                        of the minimum accuracy in decimal digits of
-!                        the se and sed function values for each angle
 !               naccc  : vector of dimension narg containing estimates
+!                        of the minimum accuracy in decimal digits of
+!                        the ce and ced function values for each angle
+!               naccs  : vector of dimension narg containing estimates
 !                        of the minimum accuracy in decimal digits of
 !                        the se and sed function values for each angle
 !               jangc  : largest number of terms taken for ce
