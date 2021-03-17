@@ -121,8 +121,8 @@
 
      subroutine matfcn(lnum,ioprad,izxi,icq,isq,qc,r,iopang,narg,
      1                     arg,mc1c,mc1e,mc1dc,mc1de,mc23c,mc23e,mc23dc,
-     2                     mc23de,ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e,
-     3                     ms23dc,ms23de,ce,ced,se,sed)
+     2                     mc23de,naccrc,ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e,
+     3                     ms23dc,ms23de,naccrs,ce,ced,se,sed,nacca)
 
     Input and output parameters appearing in the subroutine call
     statement are defined below:
@@ -206,7 +206,7 @@
                    When q is positive, the functions are real.
                    When q is negative and the order is odd, the
                    functions are imaginary. The real values given
-                   in the vectors dmc1 and dmc1d must be multiplied
+                   in the vectors mc1c and mc1dc must be multiplied
                    by i to obtain the characteristics for odd orders.
 
           mc1e   : integer vectors of length lnum containing the
@@ -222,20 +222,23 @@
                    with respect to z. Mc3 and its first derivative is
                    real when l is odd and imaginary when l is even.
                    In this case, the real values given in the vectors
-                   dmc23 and dmc23d must be multiplied by i to obtain
+                   mc23c and mc23dc must be multiplied by i to obtain
                    the characteristics for even orders.
 
           mc23e :  integer vectors of length lnum containing the
-          mc23de   exponents corresponding to dmc23 and dmc23d
+          mc23de   exponents corresponding to mc23 and mc23d
+
+          naccrc : vector of lnum values for the estimated accuracy of the
+                   cosine radial functions; obtained using the Wronskian
 
           ms1c   : real(knd) vectors of length lnum containing the
           ms1dc    characteristics for the sine radial functions
                    of the first kind Ms1 and their first derivatives
-                  with respect to z.
+                   with respect to z.
                    When q is positive, the functions are real.
                    When q is negative and the order is odd, the
                    functions are imaginary. The real values given in
-                   the vectors dms1 and dms1d must be multiplied by i
+                   the vectors ms1c and ms1dc must be multiplied by i
                    to obtain the characteristics for odd orders.
 
           ms1e   : integer vectors of length lnum containing the
@@ -249,22 +252,26 @@
                    the characteristics for the sine radial functions
                    of the third kind Ms3 and their first derivatives
                    with respect to z. Ms3 and its first derivative is
-                  real when l is odd and imaginary when l is even.
+                   real when l is odd and imaginary when l is even.
                    In this case, the real values given in the vectors
-                   dms23 and dms23d must be multiplied by i to obtain
-                  the characteristics for even orders.
+                   ms23c and ms23dc must be multiplied by i to obtain
+                   the characteristics for even orders.
 
           mc23e  : integer vectors of length lnum containing the
-          mc23de   exponents corresponding to dms23 and dms23d
+          mc23de   exponents corresponding to ms23 and ms23d
 
-          ce,ced : vectors ce(lnum,narg) and ced(lnum,narg) that
+          naccrs : vector of lnum values for the estimated accuracy of the
+                   sine radial functions; obtained using the Wronskian
+
+          ce,ced : arrays ce(lnum,narg) and ced(lnum,narg) that
                    contain narg calculated angular cosine functions
                    and their first derivatives for each of the lnum
                    values of l [real(knd)]
                    For example, ce(10,1) is the angular function for
                    l = 9 and the first value of the angle phi given
                    by arg(1)
-          se,sed : vectors se(lnum,narg) and sed(lnum,narg) that
+
+          se,sed : arrays se(lnum,narg) and sed(lnum,narg) that
                    contain narg calculated angular sine functions
                    and their first derivatives for each of the lnum
                    values of l [real(knd))
@@ -272,6 +279,11 @@
                    l = 9 and the first value of the angle phi given
                    by arg(1)
 
+          nacca  : array of lnum values for the estimated accuracy of the angular
+                   functions for each of the narg angles; it is equal to the
+                   minimum of the estimates for the sine and cosine angular
+                   functions and their first derivatives; it is based on
+                   subtraction errors in their calculation
 
   Stand Alone Version of Matfcn
 
@@ -428,8 +440,8 @@
                imc23de/:exponent of the first derivative of the
                ims23de  radial function of the second (or third)
                         kind (i6 for q positive; i8 for q negative)
-               naccr  : accuracy: equal to the number of decimal digits
-                        of agreement between the theoretical Wronskian
+               naccrc/ :accuracy: equal to the number of decimal digits
+               naccrs   of agreement between the theoretical Wronskian
                         and the calculated Wronskian (i2)
 
      When one of the two products of radial functions used in forming
@@ -522,7 +534,7 @@
      subroutine main. The reason for choosing 6 is that it is expected
      that 6 accurate decimal digits are sufficient for most
      applications. The integer can be changed to any desired value in
-     the write(60,*) statement below.
+     the write(60,*).
 
      In the unlikely case that the eigenvalue routine fails to properly
      converge, the value of l for which this occurs will be written
