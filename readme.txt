@@ -119,10 +119,10 @@
 
   Subroutine Version of Matfcn
 
-     subroutine matfcn(lnum,ioprad,izxi,icq,isq,qc,r,iopang,narg,
-     1                     arg,mc1c,mc1e,mc1dc,mc1de,mc23c,mc23e,mc23dc,
-     2                     mc23de,naccrc,ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e,
-     3                     ms23dc,ms23de,naccrs,ce,ced,se,sed,nacca)
+     subroutine matfcn(lnum,ioprad,izxi,icq,isq,qc,r,iopang,narg, &
+                       arg,mc1c,mc1e,mc1dc,mc1de,mc23c,mc23e,mc23dc, &
+                       mc23de,naccrc,ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e, &
+                       ms23dc,ms23de,naccrs,ce,ced,se,sed,nacca)
 
     Input and output parameters appearing in the subroutine call
     statement are defined below:
