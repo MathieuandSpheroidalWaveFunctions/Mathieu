@@ -230,7 +230,7 @@ module mathieu
     real(knd), intent (in)  ::  qc, r, arg(narg)
     integer, intent (out)   ::  mc1e(lnum),mc1de(lnum),mc23e(lnum),mc23de(lnum), &
                                 ms1e(lnum),ms1de(lnum),ms23e(lnum),ms23de(lnum), &
-                                naccrc(lnum), naccrs(lnum), naccra(lnum, narg)
+                                naccrc(lnum), naccrs(lnum), nacca(lnum, narg)
     real(knd), intent (out) ::  mc1c(lnum), mc1dc(lnum), mc23c(lnum), mc23dc(lnum), &
                                 ms1c(lnum), ms1dc(lnum), ms23c(lnum), ms23dc(lnum), &
                                 ce(lnum, narg), ced(lnum, narg), &
