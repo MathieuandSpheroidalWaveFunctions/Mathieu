@@ -335,8 +335,8 @@ module mathieu
                    narg,arg,maxd,maxj,maxlp,maxn,maxp,maxkbp,maxk, &
                    ndec,nex,ngau,kindd,kindq, &
 		   mc1c,mc1e,mc1dc,mc1de,mc23c,mc23e,mc23dc,mc23de,naccrc, &
-		   ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e,ms23dc,ms23de, &
-		   naccrs,ce,ced,se,sed,nacca)
+		   ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e,ms23dc,ms23de,naccrs, &
+		   ce,ced,se,sed,nacca)
         end subroutine
 !
 
@@ -519,7 +519,7 @@ module mathieu
         real(knd) ace(lnum,narg),aced(lnum,narg),ase(lnum,narg),ased(lnum,narg)
 !
 !  integer arrays with dimensions lnum and narg
-        integer   naa(lnum,narg)            
+        integer   naa(lnum,narg)
 !
 !  real(knd) vectors with dimension maxd
         real(knd) enra(maxd),blista(maxd),glista(maxd),enrb(maxd), &
