@@ -1,11 +1,11 @@
-  			Mathieu
+                          Mathieu
 
   Matfcn is available as both a subroutine version provided as
   the module Mathieu and a stand alone version. It was originally
   developed by arnie lee van buren and jeffrey boisvert and has
   been improved several times since then.
-  
-	Table of Contents
+
+     Table of Contents
   1. Purpose
   2. Introduction
   3. Input and Output
@@ -13,7 +13,7 @@
   5. Accuracy of results using real*16 arithmetic
   6. Obtaining the A and B expansion coefficients
   7. Obtaining the eigenvalues
-  
+
 
   1. Purpose 
 
@@ -117,7 +117,7 @@
   stand alone version. Note that these output files, if desired, can be
   obtained when running the subroutine version. See comments about
   this below.
-  
+
   A sample input and resulting output from matfcn is provided by the
   files matfcndat (text version of the input file matfcn.dat for the
   stand alone version), matfort20 (text version of the output file
@@ -383,7 +383,7 @@
 
    These output files are also available using the subroutine version
    of matfcn. Generation of each of the files is controlled by a logical
-   specified in the module param. False suppresses the output file and true          enables it. The logical debug controls fort.30 and fort.40, the logical
+   specified in the module param. False suppresses the output file and true           enables it. The logical debug controls fort.30 and fort.40, the logical
    output controls fort.20 and fort.30 and warn controls fort.60.
 
    fort.20
@@ -526,7 +526,7 @@
      the specific techniques used and the numbers of terms required
      for the radial function and angular function calculations,
      respecively. They are annotated and should be self-explanatory.
-     
+
    fort.60
 
      This file may be of interest to the user. It is recommended that
@@ -649,7 +649,7 @@
   contribution to the solution of physical problems involving Mathieu
   functions. Note that the angular functions have the same norm pi as
   the corresponding cosine and sine functions.
-                                                         
+
   5. Accuracy of Results Using Real*16 Arithmetic
 
   If the user desires more accuracy than is provided using real*8
