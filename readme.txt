@@ -15,7 +15,7 @@
   7. Obtaining the eigenvalues
 
 
-  1. Purpose 
+  1. Purpose
 
   To calculate the Mathieu radial functions and their first
   derivatives for a range of lnum orders from l = 0 to l = lnum - 1
@@ -86,7 +86,7 @@
   precision will provide higher accuracy but will considerably increase
   the run time. Some compilers require that param be compiled prior to
   rather than after mathieu. The logicals in param are described below
-  in the discussion of the output files.  
+  in the discussion of the output files.
 
   Some computers may have more than 8 bytes for double precision
   data and more than 16 bytes for quadruple precision data. In this
@@ -109,7 +109,7 @@
   This includes setting kindd and kindq to the proper values for double
   and quadruple precision arithmetic, respectively.
 
-  3. Input and Output  
+  3. Input and Output
 
   Following is a description of the input and output parameters in the
   call statement for the subroutine version. After that will be a
@@ -707,7 +707,7 @@
   Both enra and enrb have the dimension maxd, which is the
   estimate of the largest number of coefficients that will be required
   to compute the radial and/or angular functions for all desired lnum
-  orders. The number of coeffficient ratios computed for each l is 
+  orders. The number of coeffficient ratios computed for each l is
   given by limd/2, where limd tends to increase with increasing l. It
   can be very large when xi is very close to unity and the traditional
   expansion in modified Bessel function of the second kind K is used to
@@ -732,7 +732,7 @@
   B(sub l) computed in subroutine cese and returned to main as bsubl.
   Note that the values for asubl and bsubl are correct as given for
   both q positive and q negative. No interchange is needed when q is
-  negative and l is odd.  
+  negative and l is odd.
 
   7. Obtaining the eigenvalues
 
@@ -741,7 +741,7 @@
   vector eiga(l+1). Similarly the eigenvalues for B are computed in
   subroutine converb and returned to main and stored in the vector
   eigb(l+1). Note that there is no B eigenvalue for l = 0 so eigb(1)
-  is set to zero here. Note also that for q negative the eigenvalues 
+  is set to zero here. Note also that for q negative the eigenvalues
   for A and B switch places when l is odd; thus the A eigenvalue is
   computed in converb and the B eigenvalue is computed in convera. The
   vectors eiga and eigb for q negative given below correctly reflect
