@@ -365,7 +365,7 @@ module mathieu
 !                        When q is positive, this results in
 !                        radial functions of the first and second
 !                        kind m1 and m2. When q is negative, it
-!                         results in radial functions of the first
+!                        results in radial functions of the first
 !                        and third kind m1 and m3.
 !               iopang : equal to 0 if no angular functions are desired;
 !                        equal to 1 if only angular functions of the
