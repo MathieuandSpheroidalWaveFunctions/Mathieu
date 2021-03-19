@@ -361,23 +361,23 @@ module mathieu
 !               isq    : sign of q
 !               ioprad : = 0 if radial functions are not desired
 !                      : = 1 if radial functions of both kinds and
-!                       their first derivatives are computed.
-!                       When q is positive, this results in
-!                       radial functions of the first and second
-!                       kind m1 and m2. When q is negative, it
-!                       results in radial functions of the first
-!                       and third kind m1 and m3.
-!               iopang :equal to 0 if no angular functions are desired;
-!                       equal to 1 if only angular functions of the
-!                       first kind are desired;
-!                       equal to 2 if angular functions of the first
-!                       kind and their first derivatives are desired
+!                        their first derivatives are computed.
+!                        When q is positive, this results in
+!                        radial functions of the first and second
+!                        kind m1 and m2. When q is negative, it
+!                         results in radial functions of the first
+!                        and third kind m1 and m3.
+!               iopang : equal to 0 if no angular functions are desired;
+!                        equal to 1 if only angular functions of the
+!                        first kind are desired;
+!                        equal to 2 if angular functions of the first
+!                        kind and their first derivatives are desired
 !               minacc : desired minimum accuracy for the radial
 !                        functions
 !               izxi   : = 1 if the input radial coordinate is the
-!                       traditional radial coordinate z
+!                        traditional radial coordinate z
 !                      : = 2 if the input radial coordinate is the
-!                       spheroidal-like radial coordinate xi = cosh(z)
+!                        spheroidal-like radial coordinate xi = cosh(z)
 !               x1     : radial coordinate xi - 1 = cosh(z) - 1
 !               z      : traditional radial coordinate
 !               arg    : vector of narg angle coordinates in degrees
