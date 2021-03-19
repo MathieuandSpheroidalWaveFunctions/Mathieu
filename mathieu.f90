@@ -1,10 +1,3 @@
-module param
-    integer, parameter :: knd = selected_real_kind(8)
-    logical, parameter :: debug = .true.
-    logical, parameter :: warn = .true.
-    logical, parameter :: output = .false.
-end module param
-
 module mathieu
     use param
 
@@ -39,12 +32,19 @@ module mathieu
 !               angular coordinate values.
 !
 !  Matfcn can be run in either double precision or quadruple precision
-!  arithmetic. The choice is set in the module param located above at
-!  the beginning of matfcn. Here, the kind parameter knd is set by the
-!  statement:
-!      integer, parameter :: knd = selected_real_kind(8)
+!  arithmetic. The choice is set in the module param provided in the github
+!  repository. If this is not available, then create param as follows:
+!    module param
+!    integer, parameter :: knd = selected_real_kind(8)
+!    logical, parameter :: debug = .true.
+!    logical, parameter :: warn = .true.
+!    logical, parameter :: output = .false.
+!    end module param
 !  Set the value of knd in the parenthesis to either 8 for double
-!  precision or 16 for quadruple precision arithmetic.
+!  precision or 16 for quadruple precision arithmetic. Some compilers
+!  require that param be compiled prior to mathieu. The logicals in param
+!  are described in the readme file and below in the discussion of output
+!  files.
 !
 !  Matfcn provides accurate results over extremely wide parameter ranges
 !  when using double precision. It provides higher accuracy using quadruple
@@ -220,8 +220,8 @@ module mathieu
 !  fort.50 are diagnostic files. Fort.60 provides warning whenever the
 !  estimated accuracy falls below a specified minimum, currently set
 !  equal to 6. Writing to these files is controlled by logicals specified
-!  above in module param. False suppresses the file; true enables it.
-!  Debug controls fort.30 and fort.40, warn controls fort.60 and output
+!  in module param. False suppresses the file; true enables it. Debug
+!  controls fort.30 and fort.40, warn controls fort.60 and output
 !  controls fort.20 and fort.30. Information about these files as well
 !  as a discussion about accuracy, expansion A and B coefficients and
 !  eigenvalues is given in the readme file.
