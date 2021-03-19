@@ -367,11 +367,11 @@ module mathieu
 !                       kind m1 and m2. When q is negative, it
 !                       results in radial functions of the first
 !                       and third kind m1 and m3.
-!               iopang : equal to 0 if no angular functions are desired;
-!                        equal to 1 if only angular functions of the
-!                          first kind are desired;
-!                        equal to 2 if angular functions of the first
-!                          kind and their first derivatives are desired
+!               iopang :equal to 0 if no angular functions are desired;
+!                       equal to 1 if only angular functions of the
+!                       first kind are desired;
+!                       equal to 2 if angular functions of the first
+!                       kind and their first derivatives are desired
 !               minacc : desired minimum accuracy for the radial
 !                        functions
 !               izxi   : = 1 if the input radial coordinate is the
