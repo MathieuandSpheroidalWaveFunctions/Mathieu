@@ -78,7 +78,7 @@
     integer, parameter :: knd = selected_real_kind(8)
     logical, parameter :: debug = .true.
     logical, parameter :: warn = .true.
-    logical, parameter :: output = .false.
+    logical, parameter :: output = .true.
     end module param
 
   Set the value of knd in the parenthesis to either 8 for double
