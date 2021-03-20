@@ -132,15 +132,15 @@
                        mc23de,naccrc,ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e, &
                        ms23dc,ms23de,naccrs,ce,ced,se,sed,nacca)
 
-integer, intent (in)    ::  lnum, ioprad, izxi, icq, isq, iopang, narg
-real(knd), intent (in)  ::  qc, r, arg(narg)
-integer, intent (out)   ::  mc1e(lnum), mc1de(lnum), mc23e(lnum), mc23de(lnum), &
-                            ms1e(lnum), ms1de(lnum), ms23e(lnum), ms23de(lnum), &
-                            naccrc(lnum), naccrs(lnum), nacca(lnum, narg)
-real(knd), intent (out) ::  mc1c(lnum), mc1dc(lnum), mc23c(lnum), mc23dc(lnum), &
-                            ms1c(lnum), ms1dc(lnum), ms23c(lnum), ms23dc(lnum), &
-                            ce(lnum, narg), ced(lnum, narg), &
-                            se(lnum, narg), sed(lnum, narg)
+         integer, intent (in)    ::  lnum, ioprad, izxi, icq, isq, iopang, narg
+         real(knd), intent (in)  ::  qc, r, arg(narg)
+         integer, intent (out)   ::  mc1e(lnum), mc1de(lnum), mc23e(lnum), mc23de(lnum), &
+                                     ms1e(lnum), ms1de(lnum), ms23e(lnum), ms23de(lnum), &
+                                     naccrc(lnum), naccrs(lnum), nacca(lnum, narg)
+         real(knd), intent (out) ::  mc1c(lnum), mc1dc(lnum), mc23c(lnum), mc23dc(lnum), &
+                                     ms1c(lnum), ms1dc(lnum), ms23c(lnum), ms23dc(lnum), &
+                                     ce(lnum, narg), ced(lnum, narg), &
+                                     se(lnum, narg), sed(lnum, narg)
 
     Input and output parameters appearing in the subroutine call
     statement are defined below:
