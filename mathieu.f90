@@ -6,9 +6,9 @@ module mathieu
     contains
 
     subroutine matfcn(lnum, ioprad, izxi, icq, isq, qc, r, iopang, narg, arg, &
-                            mc1c, mc1e, mc1dc, mc1de, mc23c, mc23e, mc23dc, mc23de, naccrc, &
-                            ms1c, ms1e, ms1dc, ms1de, ms23c, ms23e, ms23dc, ms23de, naccrs, &
-                            ce, ced, se, sed, nacca)
+                      mc1c, mc1e, mc1dc, mc1de, mc23c, mc23e, mc23dc, mc23de, naccrc, &
+                      ms1c, ms1e, ms1dc, ms1de, ms23c, ms23e, ms23dc, ms23de, naccrs, &
+                      ce, ced, se, sed, nacca)
 !
 !      version 1.08 March 2021
 !

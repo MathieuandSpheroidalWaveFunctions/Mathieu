@@ -127,10 +127,10 @@
 
   Subroutine Version of Matfcn
 
-     subroutine matfcn(lnum,ioprad,izxi,icq,isq,qc,r,iopang,narg, &
-                       arg,mc1c,mc1e,mc1dc,mc1de,mc23c,mc23e,mc23dc, &
-                       mc23de,naccrc,ms1c,ms1e,ms1dc,ms1de,ms23c,ms23e, &
-                       ms23dc,ms23de,naccrs,ce,ced,se,sed,nacca)
+    subroutine matfcn(lnum, ioprad, izxi, icq, isq, qc, r, iopang, narg, arg, &
+                      mc1c, mc1e, mc1dc, mc1de, mc23c, mc23e, mc23dc, mc23de, naccrc, &
+                      ms1c, ms1e, ms1dc, ms1de, ms23c, ms23e, ms23dc, ms23de, naccrs, &
+                      ce, ced, se, sed, nacca)
 
          integer, intent (in)    ::  lnum, ioprad, izxi, icq, isq, iopang, narg
          real(knd), intent (in)  ::  qc, r, arg(narg)
