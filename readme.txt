@@ -393,7 +393,8 @@
 
    These output files are also available using the subroutine version
    of matfcn. Generation of each of the files is controlled by a logical
-   specified in the module param. False suppresses the output file and true           enables it. The logical debug controls fort.30 and fort.40, the logical
+   specified in the module param. False suppresses the output file and true 
+   enables it. The logical debug controls fort.30 and fort.40, the logical
    output controls fort.20 and fort.30 and warn controls fort.60.
 
    fort.20
