@@ -220,7 +220,7 @@ module mathieu
 !  fort.50 are diagnostic files. Fort.60 provides warning whenever the
 !  estimated accuracy falls below a specified minimum, currently set
 !  equal to 6. Writing to these files is controlled by logicals specified
-!  in module param. False suppresses the file; true enables it. Debug
+!  in the module param. False suppresses the file; true enables it. Debug
 !  controls fort.30 and fort.40, warn controls fort.60 and output
 !  controls fort.20 and fort.30. Information about these files as well
 !  as a discussion about accuracy, expansion A and B coefficients and
@@ -582,8 +582,8 @@ if (debug) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(40,10) z
             if(ioprad.ne.0.and.knd.eq.kindq) write(40,15) z
 end if
-10          format(1x,' z = ',e24.15)
-15          format(1x,' z = ',e40.31)
+10          format(1x,' z = ',e23.14)
+15          format(1x,' z = ',e39.30)
             end if
             if(izxi.eq.2) then
 if (output) then
@@ -595,8 +595,8 @@ if (debug) then
             if(ioprad.ne.0.and.knd.eq.kindq) write(40,25) xi
 end if
             end if
-20          format(1x,'xi = ',e24.15)
-25          format(1x,'xi = ',e40.31)
+20          format(1x,'xi = ',e23.14)
+25          format(1x,'xi = ',e39.30)
             if(icq.eq.1) then
 if (output) then
             if(ioprad.ne.0.and.knd.eq.kindd) write(20,30) q
@@ -610,8 +610,8 @@ if (debug) then
             if(ioprad.ne.0.and.knd.eq.kindq) write(40,35) q
             if(iopang.ne.0.and.knd.eq.kindq) write(50,35) q
 end if
-30          format(1x,' q = ',e24.15)
-35          format(1x,' q = ',e40.31)
+30          format(1x,' q = ',e23.14)
+35          format(1x,' q = ',e39.30)
             end if
             if(icq.eq.2) then
 if (output) then
@@ -626,10 +626,10 @@ if (debug) then
             if(ioprad.ne.0.and.isq.eq.1.and.knd.eq.kindq) write(40,45) cm
             if(ioprad.ne.0.and.isq.eq.-1.and.knd.eq.kindq) write(40,55) cm
 end if
-40          format(1x,' c = ',e24.15)
-45          format(1x,' c = ',e40.31)
-50          format(1x,' c = i times',e24.15)
-55          format(1x,' c = i times',e40.31)
+40          format(1x,' c = ',e23.14)
+45          format(1x,' c = ',e39.30)
+50          format(1x,' c = i times',e23.14)
+55          format(1x,' c = i times',e39.30)
 if (output) then
             if(iopang.ne.0.and.isq.eq.1.and.knd.eq.kindd) write(30,40) cm
             if(iopang.ne.0.and.isq.eq.-1.and.knd.eq.kindd) write(30,50) cm
@@ -825,19 +825,19 @@ end if
 if (debug) then
               if(knd.eq.kindd) then
               if(ioprad.ne.0.and.l.eq.0) write(40,110) l,esa
-110           format(1x,'l =',i5,5x,'eigenvalue a =',e24.15)
+110           format(1x,'l =',i5,5x,'eigenvalue a =',e23.14)
               if(ioprad.ne.0.and.l.ne.0) write(40,120) l,esa,esb
-120           format(1x,'l =',i5,5x,'eigenvalue a =',e24.15,/,14x, &
-                     'eigenvalue b =',e24.15)
+120           format(1x,'l =',i5,5x,'eigenvalue a =',e23.14,/,14x, &
+                     'eigenvalue b =',e23.14)
               if(iopang.ne.0.and.l.ne.0) write(50,120) l,esa,esb
               if(iopang.ne.0.and.l.eq.0) write(50,110) l,esa
               end if
               if(knd.eq.kindq) then
               if(ioprad.ne.0.and.l.eq.0) write(40,115) l,esa
-115           format(1x,'l =',i5,5x,'eigenvalue a =',e40.31)
+115           format(1x,'l =',i5,5x,'eigenvalue a =',e39.30)
               if(ioprad.ne.0.and.l.ne.0) write(40,125) l,esa,esb
-125           format(1x,'l =',i5,5x,'eigenvalue a =',e40.31,/,14x, &
-                     'eigenvalue b =',e40.31)
+125           format(1x,'l =',i5,5x,'eigenvalue a =',e39.30,/,14x, &
+                     'eigenvalue b =',e39.30)
               if(iopang.ne.0.and.l.ne.0) write(50,125) l,esa,esb
               if(iopang.ne.0.and.l.eq.0) write(50,115) l,esa
               end if
@@ -1401,28 +1401,28 @@ end if
                 ased(li,jarg)=sed(jarg)
                 end if
               naa(li,jarg)=nacca(jarg)
-620           format(1x,f20.14,5x,e24.15,2x,e24.15,2x,i2)
-630           format(1x,f20.14,5x,e24.15,2x,e24.15,2x,/,26x, &
-                    e24.15,2x,e24.15,2x,i2)
+620           format(1x,f20.14,5x,e23.14,2x,e23.14,2x,i2)
+630           format(1x,f20.14,5x,e23.14,2x,e23.14,2x,/,26x, &
+                    e23.14,2x,e23.14,2x,i2)
 
 if (debug) then
                 if(knd.eq.kindd) then
                 if(iopang.eq.1) write(50,640) arg(jarg),ce(jarg),se(jarg)
                 if(iopang.eq.2) write(50,650) arg(jarg),ce(jarg),ced(jarg),se(jarg),sed(jarg)
 640             format(5x,f20.14,' degrees',/,10x,'ce = ', &
-                       e24.15,2x,' se = ',e24.15)
-650                    format(5x,f20.14,' degrees',/,10x,'ce = ',e24.15,2x, &
-                       ' ced = ',e24.15,/,10x,'se = ',e24.15,2x, &
-                       ' sed = ',e24.15)
+                       e23.14,2x,' se = ',e23.14)
+650                    format(5x,f20.14,' degrees',/,10x,'ce = ',e23.14,2x, &
+                       ' ced = ',e23.14,/,10x,'se = ',e23.14,2x, &
+                       ' sed = ',e23.14)
                 end if
                 if(knd.eq.kindq) then
                 if(iopang.eq.1) write(50,660) arg(jarg),ce(jarg),se(jarg)
                 if(iopang.eq.2) write(50,670) arg(jarg),ce(jarg),ced(jarg),se(jarg),sed(jarg)
 660             format(5x,f20.14,' degrees',/,10x,'ce = ', &
-                       e40.31,2x,' se = ',e40.31)
-670                    format(5x,f20.14,' degrees',/,10x,'ce = ',e40.31,2x, &
-                       ' ced = ',e40.31,/,10x,'se = ',e40.31,2x, &
-                       ' sed = ',e40.31)
+                       e39.30,2x,' se = ',e39.30)
+670                    format(5x,f20.14,' degrees',/,10x,'ce = ',e39.30,2x, &
+                       ' ced = ',e39.30,/,10x,'se = ',e39.30,2x, &
+                       ' sed = ',e39.30)
                 end if
 end if
 680           continue
