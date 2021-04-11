@@ -814,18 +814,18 @@ if (debug) then
               if(knd.eq.kindq) then
               if(isq.eq.1.or.(isq.eq.-1.and.ix.eq.0)) &
                    write(40,215) mc1c,imc1e,mc1dc,imc1de
-215           format(10x,'mc1 = ', f34.31,i8,5x,'mc1d = ',f34.31,i8)
+215           format(10x,'mc1 = ', f33.30,i8,5x,'mc1d = ',f33.30,i8)
               if((isq.eq.1.or.(isq.eq.-1.and.ix.eq.0)).and.l.ne.0) &
                    write(40,225) ms1c,ims1e,ms1dc,ims1de
-225           format(10x,'ms1 = ', f34.31,i8,5x,'ms1d = ',f34.31,i8)
+225           format(10x,'ms1 = ', f33.30,i8,5x,'ms1d = ',f33.30,i8)
               if(isq.eq.-1.and.ix.eq.1) &
                    write(40,235) mc1c,imc1e,mc1dc,imc1de
-235           format(10x,'mc1 = i times ',f34.31,i8,5x, &
-                     'mc1d = i times ',f34.31,i8)
+235           format(10x,'mc1 = i times ',f33.30,i8,5x, &
+                     'mc1d = i times ',f33.30,i8)
               if(isq.eq.-1.and.ix.eq.1.and.l.ne.0) &
                    write(40,245) ms1c,ims1e,ms1dc,ims1de
-245           format(10x,'ms1 = i times ',f34.31,i8,5x, &
-                     'ms1d = i times ',f34.31,i8)
+245           format(10x,'ms1 = i times ',f33.30,i8,5x, &
+                     'ms1d = i times ',f33.30,i8)
               end if
 end if
             continue
@@ -964,12 +964,12 @@ end if
 if (debug) then
               write(40,335) naccrc,mc2c,imc2e,mc2dc,imc2de
 335           format(15x,'Wronskian accuracy =',i3, &
-                     ' decimal digits.'/,10x,'mc2 = ', f34.31,i6, &
-                     5x,'mc2d = ',f34.31,i6)
+                     ' decimal digits.'/,10x,'mc2 = ', f33.30,i6, &
+                     5x,'mc2d = ',f33.30,i6)
               if(l.gt.0) write(40,345) naccrs,ms2c,ims2e,ms2dc,ims2de
 345           format(15x,'Wronskian accuracy =',i3, &
-                     ' decimal digits.'/,10x,'ms2 = ', f34.31,i6, &
-                     5x,'ms2d = ',f34.31,i6)
+                     ' decimal digits.'/,10x,'ms2 = ', f33.30,i6, &
+                     5x,'ms2d = ',f33.30,i6)
 end if
               go to 400
           end if
@@ -998,22 +998,22 @@ if (debug) then
               if(knd.eq.kindq) then
               if(ix.eq.1) write(40,365) naccrc,mc3c,imc3e,mc3dc,imc3de
 365           format(15x,'Wronskian accuracy =',i3, &
-                     ' decimal digits.'/,10x,'mc3 = ', f34.31,i8, &
-                     5x,'mc3d = ',f34.31,i8)
+                     ' decimal digits.'/,10x,'mc3 = ', f33.30,i8, &
+                     5x,'mc3d = ',f33.30,i8)
               if(ix.eq.1.and.l.gt.0) write(40,375) naccrs,ms3c,ims3e, &
                                                    ms3dc,ims3de
 375           format(15x,'Wronskian accuracy =',i3, &
-                     ' decimal digits.'/,10x,'ms3 = ', f34.31,i8, &
-                     5x,'ms3d = ',f34.31,i8)
+                     ' decimal digits.'/,10x,'ms3 = ', f33.30,i8, &
+                     5x,'ms3d = ',f33.30,i8)
               if(ix.eq.0) write(40,385) naccrc,mc3c,imc3e,mc3dc,imc3de
 385           format(15x,'Wronskian accuracy =',i3, &
-                     ' decimal digits.'/,10x,'mc3 = i times ',f34.31,i8, &
-                     5x,'mc3d = i times',f34.31,i8)
+                     ' decimal digits.'/,10x,'mc3 = i times ',f33.30,i8, &
+                     5x,'mc3d = i times',f33.30,i8)
               if(l.gt.0.and.ix.eq.0) write(40,395) naccrs,ms3c,ims3e, &
                                                    ms3dc,ims3de
 395           format(15x,'Wronskian accuracy =',i3, &
-                     ' decimal digits.'/,10x,'ms3 = i times ',f34.31,i8, &
-                     5x,'ms3d = i times',f34.31,i8)
+                     ' decimal digits.'/,10x,'ms3 = i times ',f33.30,i8, &
+                     5x,'ms3d = i times',f33.30,i8)
               end if
 end if
 400         continue
@@ -1117,18 +1117,18 @@ if (debug) then
               end if
               if(knd.eq.kindq) then
               if(ix.eq.0) write(40,475) mc3c,imc3e,mc3dc,imc3de
-475           format(10x,'mc3 = i times ',f34.31,i8, &
-                     5x,'mc3d = i times ',f34.31,i8)
+475           format(10x,'mc3 = i times ',f33.30,i8, &
+                     5x,'mc3d = i times ',f33.30,i8)
               if(ix.eq.1) write(40,485) mc3c,imc3e,mc3dc,imc3de
-485           format(10x,'mc3 = ', f34.31,i8,5x,'mc3d = ',f34.31,i8)
+485           format(10x,'mc3 = ', f33.30,i8,5x,'mc3d = ',f33.30,i8)
               if(l.gt.0) write(40,460) naccrs
               if(ix.eq.0.and.l.gt.0) write(40,495) ms3c,ims3e,ms3dc, &
                                                    ims3de
-495           format(10x,'ms3 = i times ',f34.31,i8, &
-                     5x,'ms3d = i times ',f34.31,i8)
+495           format(10x,'ms3 = i times ',f33.30,i8, &
+                     5x,'ms3d = i times ',f33.30,i8)
               if(ix.eq.1.and.l.gt.0) write(40,505) ms3c,ims3e,ms3dc, &
                                                    ims3de
-505           format(10x,'ms3 = ', f34.31,i8,5x,'ms3d = ',f34.31,i8)
+505           format(10x,'ms3 = ', f33.30,i8,5x,'ms3d = ',f33.30,i8)
               end if
 end if
 510         if(iopneu.eq.4) iopneu=1
