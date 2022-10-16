@@ -118,11 +118,18 @@
   obtained when running the subroutine version. See comments about
   this below.
 
-  A sample input and resulting output from matfcn is provided by the
-  files matfcndat (text version of the input file matfcn.dat for the
-  stand alone version), matfort20 (text version of the output file
-  fort.20 giving the resulting radial functions) and matfort30 (text
-  version of the output file fort.30 giving the resulting angular
+  A sample input and resulting output from matfcn for c real (q positive)
+  is provided by the files matfcndat (text version of the input file
+  matfcn.dat for the stand alone version), matfort20 (text version of the
+  output file fort.20 giving the resulting radial functions) and matfort30
+  (text version of the output file fort.30 giving the resulting angular
+  functions).
+
+  A sample input and resulting output from matfcn for c imagimary (q negative)
+  is provided by the files matfcnidat (text version of the input file
+  matfcn.dat for the stand alone version), matifort20 (text version of the
+  output file fort.20 giving the resulting radial functions) and matifort30
+  (text version of the output file fort.30 giving the resulting angular
   functions).
 
   Subroutine Version of Matfcn
