@@ -1,7 +1,7 @@
 program matfcn
        use param
 !
-!      version 1.09 April 2021
+!      version 1.10 July 2026
 !
 !  Developed originally in about 2005 by arnie lee van buren and jeffrey
 !  boisvert. Updated several times since then. For more information see:

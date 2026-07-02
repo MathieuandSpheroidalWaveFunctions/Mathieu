@@ -10,7 +10,7 @@ module mathieu
                       ms1c, ms1e, ms1dc, ms1de, ms23c, ms23e, ms23dc, ms23de, naccrs, &
                       ce, ced, se, sed, nacca)
 !
-!      version 1.09 April 2021
+!      version 1.10 July 2026
 !
 !  Subroutine version of the fortran program matfcn originally developed
 !  about 2005 by arnie lee van buren and jeffrey boisvert. Updated
