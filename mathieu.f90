@@ -4027,7 +4027,7 @@ end if
         if(l > 0) cll = eiga4
         if(l == 1) clu = eigaval + (eigaval - eiga4)
         if(l == 2 .or. l == 3) clu = eigaval + 0.5e0_knd * (eigaval - eiga3)
-        if(l > 3) clu = eigaval + 0.5e0_knd * (eiga3 - eiga1)
+        if(l > 3) clu = eigaval + 0.7e0_knd * (eiga4 - eiga3)
         l2 = l / 2
 !
 !  begin bouwkamp procedure
@@ -4130,7 +4130,7 @@ end if
 !  check to see if too many modifications are being made
 !  if so then suspect error in the routine
 170     jnde = jnde + 1
-        if(jnde == 50) go to 230
+        if(jnde == 50) go to 180
 !
 !  eigenvalue lies somewhere within the range established above
 !  repeat procedure using the midpoint of this range
@@ -4184,6 +4184,7 @@ end if
         a01 = a01 * (10.0e0_knd ** (-iterm))
         ia01 = ia01 + iterm
 220     continue
+        if (jnde == 50) go to 230 
         return
 !
 !  error printout
