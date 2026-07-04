@@ -10,7 +10,7 @@ module mathieu
                       ms1c, ms1e, ms1dc, ms1de, ms23c, ms23e, ms23dc, ms23de, naccrs, &
                       ce, ced, se, sed, nacca)
 !
-!      version 1.10 July 2026
+!      version 1.11 July 2026
 !
 !  Subroutine version of the fortran program matfcn originally developed
 !  about 2005 by arnie lee van buren and jeffrey boisvert. Updated
@@ -22,7 +22,7 @@ module mathieu
 !  purpose    : To calculate the Mathieu radial functions and their
 !               first derivatives for a range of lnum orders from l
 !               = 0 to l = lnum - 1 and for a given value of q
-!               [or c=sqrt(2*q)] and the radial coordinate r. The
+!               [or c=2*sqrt(abs(q))] and the radial coordinate r. The
 !               radial coordinate can either be the traditional
 !               coordinate z or the spheroidal-like radial
 !               coordinate xi = cosh(z).
@@ -30,6 +30,15 @@ module mathieu
 !               their first derivatives for orders l = 0 to l = lnum - 1
 !               for a given value of q (or c) and for one or more
 !               angular coordinate values.
+!
+!  This version of Matfcn uses a more traditional definition of q than
+!  previous versions of this program. Brian Gladman reminded me that
+!  common usage for q is one half of the value we used. We had previously
+!  based q on a form of Mathieu's differential equation with a factor of
+!  q in the last term. The form used universally today has a factor of 2q.
+!  Thus our value of q was twice the value commonly used. Note this our
+!  spheroidal like size parameter c is now equal to 2*sqrt(abs(q)) as
+!  opposed to our previous use of c = sqrt(2*abs(q)).
 !
 !  Matfcn can be run in either double precision or quadruple precision
 !  arithmetic. The choice is set in the module param provided in the github
@@ -277,11 +286,11 @@ module mathieu
 !
           if(icq == 1) then
           q = qc
-          cm = sqrt(2.0e0_knd * abs(q))
+          cm = 2.0e0_knd*sqrt(abs(q))
           end if
           if(icq == 2) then
           cm = qc
-          q = cm * cm / 2.0e0_knd
+          q = cm * cm / 4.0e0_knd
           if(isq == -1) q = -q
           end if
           if(izxi == 1) then
@@ -596,7 +605,7 @@ if (debug) then
 end if
             end if
 20          format(1x,'xi = ',e23.14)
-25          format(1x,'xi = ',e39.30)
+25          format(1x,'xi = ',e39.30) 
             if(icq == 1) then
 if (output) then
             if(ioprad /= 0 .and. knd == kindd) write(20, 30) q

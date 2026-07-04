@@ -19,7 +19,7 @@
 
   To calculate the Mathieu radial functions and their first
   derivatives for a range of lnum orders from l = 0 to l = lnum - 1
-  and for a given value of q [or c=sqrt(2*q)] and the radial
+  and for a given value of q [or c=2*sqrt(abs(q))] and the radial
   coordinate r. The radial coordinate can either be the traditional
   coordinate z or the spheroidal-like radial coordinate xi = cosh(z).
   To calculate the Mathieu angular functions and their first derivatives
@@ -28,6 +28,15 @@
 
   2. Introduction
 
+  Our Mathieu function programs now use a more traditional definition of
+  q than previous versions did. Brian Gladman reminded me that common
+  usage for q is one half of the value we used. We had previously
+  based q on a form of Mathieu's differential equation with a factor of
+  q in the last term. The form used universally today has a factor of 2q.
+  Thus our value of q is twice the value commonly used. Note this our
+  spheroidal-like size parameter c is now equal to 2*sqrt(abs(q)) as
+  opposed to our previous use of c = sqrt(2*abs(q)).
+  
   We use the term radial function for what is normally referred to as
   a modified Mathieu function. We do this to be consistent with our
   usage of the term radial function for spheroidal wave functions.
@@ -562,7 +571,7 @@
 
      In the unlikely case that the eigenvalue routine fails to properly
      converge, the value of l for which this occurs will be written
-     to fort.60. Note that this has never been observed with matfcn.
+     to fort.60.
 
 
   4. Accuracy of Results Using Real*8 Arithmetic
